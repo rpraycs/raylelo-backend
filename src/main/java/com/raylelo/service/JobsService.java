@@ -1,5 +1,7 @@
 package com.raylelo.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,5 +27,27 @@ public class JobsService {
 		return serviceResponse;
 				
 	} 
+	
+	public ServiceResponse getJobs() {
+		ServiceResponse serviceResponse = ServiceResponse.prepare();
+		try {
+			List<Jobs> jobs = jobsRepository.findAll();
+			serviceResponse = new ServiceResponse(null, jobs, null, true);
+		} catch(Exception ex) {
+			System.out.println(ex.getMessage());
+		}
+		return serviceResponse;
+	}
+	
+	public ServiceResponse getJobDataById(Long jobId) {
+		ServiceResponse serviceResponse = ServiceResponse.prepare();
+		try {
+			Jobs jobData = jobsRepository.findByJobId(jobId);
+			serviceResponse = new ServiceResponse(null, jobData, null, true);
+		} catch(Exception ex) {
+			System.out.println(ex.getMessage());
+		}
+		return serviceResponse;
+	}
 
 }

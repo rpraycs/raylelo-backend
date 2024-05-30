@@ -98,9 +98,10 @@ public class Jobs implements Serializable{
 	private Long categoryId;
 	
 	
-	public Jobs (Long jobId, String title, Date lastDateApply) {
+	public Jobs (Long jobId, String title, Date lastDateApply, Category category) {
 		this.jobId = jobId;
 		this.title = title;
 		this.lastDateApply = lastDateApply;
+		this.category = category;
 	}
 }

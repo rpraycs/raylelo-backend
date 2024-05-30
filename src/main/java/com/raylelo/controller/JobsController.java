@@ -39,9 +39,19 @@ public class JobsController {
 		return service.getJobDataById(jobId);
 	}
 	
-	@GetMapping("/latestJobs/{tileType}")
-	public ServiceResponse getLatestJobs(@PathVariable String tileType) {
-		return service.getLatestJobs(tileType);
+	@GetMapping("/latestJobs")
+	public ServiceResponse getLatestJobs() {
+		return service.getLatestJobs();
+	}
+	
+	@GetMapping("/results")
+	public ServiceResponse getResults() {
+		return service.getResults();
+	}
+	
+	@GetMapping("/admitCards")
+	public ServiceResponse getAdmitCards() {
+		return service.getAdmitCards();
 	}
 
 }

@@ -59,10 +59,32 @@ public class JobsService {
 		return serviceResponse;
 	}
 
-	public ServiceResponse getLatestJobs(String tileType) {
+	public ServiceResponse getLatestJobs() {
 		ServiceResponse serviceResponse = ServiceResponse.prepare();
 		try {
-			List<Jobs> jobs = jobsRepository.getLatestJobs(tileType);
+			List<Jobs> jobs = jobsRepository.getLatestJobs();
+			serviceResponse = new ServiceResponse(null, jobs, null, true);
+		} catch(Exception ex) {
+			System.out.println(ex.getMessage());
+		}
+		return serviceResponse;
+	}
+	
+	public ServiceResponse getResults() {
+		ServiceResponse serviceResponse = ServiceResponse.prepare();
+		try {
+			List<Jobs> jobs = jobsRepository.getResults();
+			serviceResponse = new ServiceResponse(null, jobs, null, true);
+		} catch(Exception ex) {
+			System.out.println(ex.getMessage());
+		}
+		return serviceResponse;
+	}
+	
+	public ServiceResponse getAdmitCards() {
+		ServiceResponse serviceResponse = ServiceResponse.prepare();
+		try {
+			List<Jobs> jobs = jobsRepository.getAdmitCards();
 			serviceResponse = new ServiceResponse(null, jobs, null, true);
 		} catch(Exception ex) {
 			System.out.println(ex.getMessage());

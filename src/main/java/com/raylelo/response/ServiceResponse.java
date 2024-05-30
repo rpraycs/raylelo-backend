@@ -2,6 +2,7 @@ package com.raylelo.response;
 
 import java.util.List;
 
+import com.raylelo.model.Category;
 import com.raylelo.model.Jobs;
 
 import lombok.AllArgsConstructor;
@@ -18,10 +19,17 @@ public class ServiceResponse {
 	private String error;
 	private Boolean success;
 	private List<Jobs> jobs;
+	private List<Category> categories;
 	
 	public ServiceResponse(String msg, List<Jobs> jobs, String error, Boolean success) {
 		this.msg = msg;
 		this.jobs = jobs;
+		this.error = error;
+		this.success = success;
+	}
+	
+	public ServiceResponse(List<Category> categories, String error, Boolean success) {
+		this.categories = categories;
 		this.error = error;
 		this.success = success;
 	}

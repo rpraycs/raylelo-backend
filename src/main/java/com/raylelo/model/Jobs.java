@@ -1,5 +1,6 @@
 package com.raylelo.model;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 import jakarta.persistence.CascadeType;
@@ -11,6 +12,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,12 +22,24 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Jobs {
+public class Jobs implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id 
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="jobId")
 	private Long jobId;
+	/*
+	 * @OneToOne(cascade = CascadeType.ALL)
+	 * 
+	 * @JoinColumn(name = "category_id", referencedColumnName = "categoryId")
+	 */
+	/*
+	 * @Column(name="category_id") private Long categoryId;
+	 */
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "category_id", referencedColumnName = "categoryId")
 	private Category category;
@@ -39,6 +53,8 @@ public class Jobs {
 	private String advtNumber;
 	@Column(name="jobName")
 	private String jobName;
+	@Column(name="lastDateApply")
+	private Date lastDateApply;
 	@Column(name="impDates")
 	private String impDates;
 	@Column(name="applFee")
@@ -78,5 +94,13 @@ public class Jobs {
 	@Column(name="updatedDate")
 	private String updatedDate;
 	
-
+	@Transient
+	private Long categoryId;
+	
+	
+	public Jobs (Long jobId, String title, Date lastDateApply) {
+		this.jobId = jobId;
+		this.title = title;
+		this.lastDateApply = lastDateApply;
+	}
 }

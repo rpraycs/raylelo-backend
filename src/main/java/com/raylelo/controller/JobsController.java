@@ -25,7 +25,7 @@ public class JobsController {
 	
 	@PostMapping("/addJob")
 	public ServiceResponse addJobs(@RequestBody Jobs job) {
-		System.out.println("Jobs: "+ job.getJobName());
+		//System.out.println("categoryId: "+ job.getCategoryId());
 		return service.addJobs(job);
 	}
 	
@@ -37,6 +37,11 @@ public class JobsController {
 	@GetMapping("/getJobs/{jobId}")
 	public ServiceResponse getJobDataById(@PathVariable Long jobId) {
 		return service.getJobDataById(jobId);
+	}
+	
+	@GetMapping("/latestJobs/{tileType}")
+	public ServiceResponse getLatestJobs(@PathVariable String tileType) {
+		return service.getLatestJobs(tileType);
 	}
 
 }

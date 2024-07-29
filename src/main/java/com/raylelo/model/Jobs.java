@@ -3,6 +3,8 @@ package com.raylelo.model;
 import java.io.Serializable;
 import java.sql.Date;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -87,12 +89,14 @@ public class Jobs implements Serializable{
 	private String tileType;
 	@Column(name="createdBy")
 	private String createdBy;
-	@Column(name="createdDate")
+	@Column(name="createdDate") 
+	@CreationTimestamp
 	private Date createdDate;
 	@Column(name="updatedBy")
 	private String updatedBy;
-	@Column(name="updatedDate")
-	private String updatedDate;
+	@Column(name="updatedDate") 
+	@CreationTimestamp
+	private Date updatedDate;
 	
 	@Transient
 	private Long categoryId;
@@ -103,5 +107,12 @@ public class Jobs implements Serializable{
 		this.title = title;
 		this.lastDateApply = lastDateApply;
 		this.category = category;
+	}
+	
+	public Jobs (Long jobId, String tileName, String tileType) {
+		this.jobId = jobId;
+		this.tileName = tileName;
+		this.tileType = tileType;
+		
 	}
 }

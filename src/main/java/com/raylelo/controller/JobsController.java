@@ -23,6 +23,11 @@ public class JobsController {
 	@Autowired
 	private JobsService service;
 	
+	@GetMapping("/home")
+	public ServiceResponse getHomeData() {
+		return service.getHomeData();
+	}
+	
 	@PostMapping("/addJob")
 	public ServiceResponse addJobs(@RequestBody Jobs job) {
 		//System.out.println("categoryId: "+ job.getCategoryId());
